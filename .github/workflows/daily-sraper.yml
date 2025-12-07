@@ -1,5 +1,8 @@
 name: Daily Gluten-Free Scraper
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 # Run daily at 2:00 UTC
 on:
   schedule:
@@ -14,6 +17,8 @@ jobs:
     # Step 1: Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     # Step 2: Set up Python
     - name: Set up Python
