@@ -43,10 +43,10 @@ jobs:
         git fetch origin gh-pages || echo "gh-pages branch does not exist yet"
         git checkout gh-pages || git checkout --orphan gh-pages
     
-    # Step 6: Copy JSONL from main branch (if needed)
+    # Step 6: Copy JSONL from master branch (if needed)
     - name: Copy scraped JSONL
       run: |
-        git checkout main -- gluten_free_products.jsonl || echo "File already exists"
+        git checkout master -- gluten_free_products.jsonl || echo "File already exists"
     
     # Step 7: Commit & push
     - name: Commit & push
