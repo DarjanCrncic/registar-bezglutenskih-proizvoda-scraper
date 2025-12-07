@@ -127,7 +127,7 @@ def scrape():
                 except Exception as e:
                     print(f"        ERROR parsing {purl}: {e}")
 
-                time.sleep(random.uniform(0.8, 1.5))
+                time.sleep(random.uniform(0.1, 0.4))
 
     print("\nAll products written to gluten_free_products.jsonl")
 
