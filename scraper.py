@@ -1,3 +1,4 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -102,7 +103,7 @@ def scrape():
     categories = get_categories()
     print(f"Found {len(categories)} categories.")
 
-    output_file = "gluten_free_products.jsonl"
+    output_file = os.path.join(os.getcwd(), "gluten_free_products.jsonl")
 
     # CLEAR FILE BEFORE WRITING ANYTHING
     open(output_file, "w", encoding="utf-8").close()
