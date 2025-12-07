@@ -85,7 +85,6 @@ def parse_product(url):
         src = img["src"].strip()
         if src.startswith("/image/product"):
             image_url = BASE + src
-            break
 
     return {
         "title": title,
