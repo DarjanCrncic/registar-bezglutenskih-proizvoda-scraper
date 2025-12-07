@@ -38,12 +38,12 @@ jobs:
       run: |
         python scraper.py
 
-    - name: Commit scraped file on master (optional)
+    - name: Commit scraped file on master
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git add gluten_free_products.jsonl
-        git commit -m "Update gluten-free JSONL on main [skip ci]" || echo "No changes"
+        git commit -m "Update gluten-free JSONL on master [skip ci]" || echo "No changes"
         git push origin master
 
     # Step 5: Switch to gh-pages branch (or create if missing)
@@ -52,10 +52,10 @@ jobs:
         git fetch origin gh-pages || echo "gh-pages branch does not exist yet"
         git checkout gh-pages || git checkout --orphan gh-pages
     
-    # Step 6: Copy JSONL from main branch (if needed)
+    # Step 6: Copy JSONL from master branch (if needed)
     - name: Copy scraped JSONL
       run: |
-        git checkout main -- gluten_free_products.jsonl || echo "File already exists"
+        git checkout master -- gluten_free_products.jsonl || echo "File already exists"
     
     # Step 7: Commit & push
     - name: Commit & push
