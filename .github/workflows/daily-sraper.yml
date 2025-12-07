@@ -1,5 +1,8 @@
 name: Daily Gluten-Free Scraper
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 # Run daily at 2:00 UTC
 on:
   schedule:
@@ -14,6 +17,8 @@ jobs:
     # Step 1: Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     # Step 2: Set up Python
     - name: Set up Python
@@ -32,19 +37,18 @@ jobs:
       run: |
         python scraper.py
 
-    # Step 5: Switch to gh-pages branch
-    - name: Prepare gh-pages branch
+    # Step 5: Switch to gh-pages branch (or create if missing)
+    - name: Switch to gh-pages branch
       run: |
-        git fetch origin gh-pages || git checkout --orphan gh-pages
+        git fetch origin gh-pages || echo "gh-pages branch does not exist yet"
         git checkout gh-pages || git checkout --orphan gh-pages
-        git rm -rf . || echo "Nothing to remove"
-
-    # Step 6: Copy JSONL file to branch
-    - name: Copy JSONL
+    
+    # Step 6: Copy JSONL from main branch (if needed)
+    - name: Copy scraped JSONL
       run: |
-        cp gluten_free_products.jsonl .
-
-    # Step 7: Commit and push
+        git checkout main -- gluten_free_products.jsonl || echo "File already exists"
+    
+    # Step 7: Commit & push
     - name: Commit & push
       run: |
         git config user.name "github-actions[bot]"
