@@ -128,6 +128,8 @@ def scrape():
                     print(f"        ERROR parsing {purl}: {e}")
 
                 time.sleep(random.uniform(0.1, 0.4))
+                return
+            return
 
     print("\nAll products written to gluten_free_products.jsonl")
 
