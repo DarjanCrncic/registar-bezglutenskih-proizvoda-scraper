@@ -30,7 +30,7 @@ jobs:
     # Step 4: Run the scraper
     - name: Run scraper
       run: |
-        python scrape_gf_products.py
+        python scraper.py
 
     # Step 5: Switch to gh-pages branch
     - name: Prepare gh-pages branch
