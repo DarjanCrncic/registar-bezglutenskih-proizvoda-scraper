@@ -1,0 +1,22 @@
+@if (visible()) {
+  <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 p-4 flex items-start gap-4">
+    <div class="flex-1">
+      <h3 class="font-semibold text-lg mb-1">Napomena</h3>
+      <p>
+        Ovaj skener i popis proizvoda služe isključivo kao pomoćni alat. Točne informacije nalaze se na
+        <a class="font-medium text-fg-brand hover:underline" href="https://bezglutena.celivita.hr" target="_blank">stranicama udruge Celivita</a>.
+        Podaci o bezglutenskim proizvodima mogu biti nepotpuni ili zastarjeli.
+        Uvijek provjerite deklaraciju proizvoda prije konzumacije.
+      </p>
+    </div>
+
+    <button
+      (click)="dismiss()"
+      class="text-yellow-700 hover:text-yellow-900 font-semibold px-2"
+      aria-label="Zatvori obavijest"
+    >
+      ✕
+    </button>
+  </div>
+
+}
